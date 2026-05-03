@@ -3,137 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حاسبة الوزن المثالي - رشاقتك بالأصفر</title>
+    <title>مقياس الحب الحقيقي ❤️</title>
     <style>
         :root {
-            --primary: #FFD700; /* أصفر فاقع */
-            --dark: #1a1a1a;
+            --pink: #ff4d6d;
+            --dark-pink: #c9184a;
             --white: #ffffff;
         }
 
         body {
-            background-color: var(--primary);
-            color: var(--dark);
-            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             min-height: 100vh;
+            color: #333;
         }
 
         .container {
             width: 90%;
-            max-width: 450px;
+            max-width: 400px;
             background: var(--white);
-            padding: 30px;
-            margin-top: 50px;
-            border-radius: 20px;
-            box-shadow: 10px 10px 0px var(--dark);
-            border: 3px solid var(--dark);
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
         }
 
-        h1 { text-align: center; margin-bottom: 20px; }
+        h1 { color: var(--pink); margin-bottom: 10px; }
+        p { font-size: 14px; color: #666; }
 
-        .input-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; }
         input {
             width: 100%;
             padding: 12px;
-            border: 2px solid var(--dark);
-            border-radius: 10px;
+            margin: 10px 0;
+            border: 2px solid #eee;
+            border-radius: 12px;
             box-sizing: border-box;
             font-size: 16px;
+            text-align: center;
         }
 
         .btn {
             width: 100%;
-            background: var(--dark);
-            color: var(--primary);
+            background: var(--pink);
+            color: white;
             border: none;
             padding: 15px;
-            border-radius: 10px;
-            font-size: 1.2rem;
+            border-radius: 12px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
+            transition: 0.3s;
         }
 
-        #result {
+        .btn:hover { background: var(--dark-pink); }
+
+        #result-box {
+            display: none;
             margin-top: 20px;
             padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-            display: none;
+            border-radius: 15px;
+            background: #fff0f3;
+            border: 2px dashed var(--pink);
         }
 
-        .ad-space {
-            margin: 20px 0;
-            border: 2px dashed #ccc;
-            min-height: 90px;
+        .percentage { font-size: 40px; font-weight: bold; color: var(--pink); }
+
+        .ad-slot {
+            margin: 15px 0;
+            min-height: 50px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            color: #888;
+            font-size: 10px;
+            color: #aaa;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>ميزانك ⚖️</h1>
-        
+        <h1>اختبار الحب ❤️</h1>
+        <p>اكتشف نسبة التوافق بينك وبين من تحب</p>
+
         <!-- إعلان Adsterra علوي -->
-        <div class="ad-space">
-            <!-- PLACE YOUR ADSTERRA BANNER CODE HERE -->
-            إعلان (بنسل علوي)
+        <div class="ad-slot">
+            <!-- الصق كود إعلان Adsterra هنا -->
+            ADSTERRA BANNER
         </div>
 
-        <div class="input-group">
-            <label>الطول (سم):</label>
-            <input type="number" id="height" placeholder="مثال: 170">
+        <input type="text" id="name1" placeholder="اسمك">
+        <input type="text" id="name2" placeholder="اسم الطرف الآخر">
+
+        <button class="btn" onclick="checkLove()">احسب النسبة الآن</button>
+
+        <div id="result-box">
+            <div id="love-msg">نسبة الحب هي:</div>
+            <div class="percentage" id="percent">0%</div>
+            <div id="love-desc" style="font-size: 13px; margin-top: 5px;"></div>
         </div>
-
-        <div class="input-group">
-            <label>الوزن (كجم):</label>
-            <input type="number" id="weight" placeholder="مثال: 70">
-        </div>
-
-        <button class="btn" onclick="calculateBMI()">احسب النتيجة الآن</button>
-
-        <div id="result"></div>
 
         <!-- إعلان Adsterra سفلي -->
-        <div class="ad-space">
-            <!-- PLACE YOUR ADSTERRA BANNER CODE HERE -->
-            إعلان (بنسل سفلي)
+        <div class="ad-slot">
+            <!-- الصق كود إعلان Adsterra هنا -->
+            ADSTERRA BANNER
+        </div>
+
+        <div style="font-size: 11px; margin-top: 15px; color: #999;">
+            هذا الموقع للترفيه فقط 😉
         </div>
     </div>
 
     <script>
-        function calculateBMI() {
-            const h = document.getElementById('height').value / 100;
-            const w = document.getElementById('weight').value;
-            const resDiv = document.getElementById('result');
-
-            if(h > 0 && w > 0) {
-                const bmi = (w / (h * h)).toFixed(1);
-                let msg = "";
-                let color = "";
-
-                if(bmi < 18.5) { msg = "نقص في الوزن"; color = "#ffeb3b"; }
-                else if(bmi < 25) { msg = "وزن مثالي ✅"; color = "#4caf50"; }
-                else if(bmi < 30) { msg = "زيادة في الوزن"; color = "#ff9800"; }
-                else { msg = "سمنة مفرطة ⚠️"; color = "#f44336"; }
-
-                resDiv.style.display = "block";
-                resDiv.style.backgroundColor = color;
-                resDiv.innerHTML = `مؤشر كتلة جسمك هو: ${bmi} <br> حالتك: ${msg}`;
-            } else {
-                alert("يرجى إدخال أرقام صحيحة");
+        function checkLove() {
+            const n1 = document.getElementById('name1').value.trim();
+            const n2 = document.getElementById('name2').value.trim();
+            
+            if(n1 === "" || n2 === "") {
+                alert("يرجى إدخال الأسماء أولاً!");
+                return;
             }
+
+            // عملية حسابية وهمية تعتمد على الأحرف لتعطي ثباتاً للنتيجة لنفس الأسماء
+            let sum = 0;
+            for(let i=0; i < n1.length; i++) sum += n1.charCodeAt(i);
+            for(let i=0; i < n2.length; i++) sum += n2.charCodeAt(i);
+            
+            let percentage = (sum % 41) + 60; // النتيجة ستكون دائماً بين 60% و 100%
+
+            document.getElementById('percent').innerText = percentage + "%";
+            document.getElementById('result-box').style.display = "block";
+
+            let desc = "";
+            if(percentage > 90) desc = "علاقة مثالية، أنتما خلقتا لبعضكما! 😍";
+            else if(percentage > 80) desc = "حب قوي جداً وتفاهم رائع! ❤️";
+            else desc = "هناك كيمياء جيدة، لكن تحتاج لبعض الصبر! 😊";
+            
+            document.getElementById('love-desc').innerText = desc;
         }
     </script>
 </body>
