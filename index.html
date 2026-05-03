@@ -3,150 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مقياس الحب الحقيقي ❤️</title>
+    <title>حاسبة الوزن والنظام الغذائي</title>
     <style>
-        :root {
-            --pink: #ff4d6d;
-            --dark-pink: #c9184a;
-            --white: #ffffff;
-        }
-
-        body {
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #333;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 400px;
-            background: var(--white);
-            padding: 25px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        h1 { color: var(--pink); margin-bottom: 10px; }
-        p { font-size: 14px; color: #666; }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #eee;
-            border-radius: 12px;
-            box-sizing: border-box;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .btn {
-            width: 100%;
-            background: var(--pink);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        .btn:hover { background: var(--dark-pink); }
-
-        #result-box {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 15px;
-            background: #fff0f3;
-            border: 2px dashed var(--pink);
-        }
-
-        .percentage { font-size: 40px; font-weight: bold; color: var(--pink); }
-
-        .ad-slot {
-            margin: 15px 0;
-            min-height: 50px;
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: #aaa;
-        }
+        :root { --primary: #FFD700; --dark: #1a1a1a; --white: #ffffff; }
+        body { background-color: var(--primary); color: var(--dark); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .container { width: 90%; max-width: 500px; background: var(--white); padding: 25px; margin: 30px 0; border-radius: 20px; box-shadow: 10px 10px 0px var(--dark); border: 3px solid var(--dark); }
+        h1 { text-align: center; font-size: 22px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input { width: 100%; padding: 12px; border: 2px solid var(--dark); border-radius: 10px; box-sizing: border-box; }
+        .btn { width: 100%; background: var(--dark); color: var(--primary); border: none; padding: 15px; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        #result-box { margin-top: 20px; display: none; padding: 15px; border-radius: 12px; border: 2px solid var(--dark); background: #fdfdfd; }
+        .diet-plan { margin-top: 15px; text-align: right; background: #fff9c4; padding: 10px; border-radius: 8px; font-size: 14px; }
+        .diet-plan h3 { margin-top: 0; color: #d32f2f; font-size: 16px; }
+        .ad-space { margin: 15px 0; min-height: 90px; background: #eee; display: flex; align-items: center; justify-content: center; border: 1px dashed #999; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>اختبار الحب ❤️</h1>
-        <p>اكتشف نسبة التوافق بينك وبين من تحب</p>
+<div class="container">
+    <h1>حاسبة الوزن والنظام الغذائي 🥗</h1>
 
-        <!-- إعلان Adsterra علوي -->
-        <div class="ad-slot">
-            <!-- الصق كود إعلان Adsterra هنا -->
-            ADSTERRA BANNER
-        </div>
-
-        <input type="text" id="name1" placeholder="اسمك">
-        <input type="text" id="name2" placeholder="اسم الطرف الآخر">
-
-        <button class="btn" onclick="checkLove()">احسب النسبة الآن</button>
-
-        <div id="result-box">
-            <div id="love-msg">نسبة الحب هي:</div>
-            <div class="percentage" id="percent">0%</div>
-            <div id="love-desc" style="font-size: 13px; margin-top: 5px;"></div>
-        </div>
-
-        <!-- إعلان Adsterra سفلي -->
-        <div class="ad-slot">
-            <!-- الصق كود إعلان Adsterra هنا -->
-            ADSTERRA BANNER
-        </div>
-
-        <div style="font-size: 11px; margin-top: 15px; color: #999;">
-            هذا الموقع للترفيه فقط 😉
-        </div>
+    <div class="ad-space">
+        <!-- كود إعلان Adsterra هنا -->
+        إعلان علوي
     </div>
 
-    <script>
-        function checkLove() {
-            const n1 = document.getElementById('name1').value.trim();
-            const n2 = document.getElementById('name2').value.trim();
-            
-            if(n1 === "" || n2 === "") {
-                alert("يرجى إدخال الأسماء أولاً!");
-                return;
+    <div class="input-group">
+        <label>الطول (سم):</label>
+        <input type="number" id="height" placeholder="مثال: 170">
+    </div>
+
+    <div class="input-group">
+        <label>الوزن (كجم):</label>
+        <input type="number" id="weight" placeholder="مثال: 70">
+    </div>
+
+    <button class="btn" onclick="calculate()">تحليل الوزن والنظام الغذائي</button>
+
+    <div id="result-box">
+        <div id="bmi-res" style="font-size: 20px; font-weight: bold; text-align: center;"></div>
+        <div id="diet-info" class="diet-plan"></div>
+    </div>
+
+    <div class="ad-space">
+        <!-- كود إعلان Adsterra هنا -->
+        إعلان سفلي
+    </div>
+</div>
+
+<script>
+    function calculate() {
+        const h = document.getElementById('height').value / 100;
+        const w = document.getElementById('weight').value;
+        const resBox = document.getElementById('result-box');
+        const bmiRes = document.getElementById('bmi-res');
+        const dietInfo = document.getElementById('diet-info');
+
+        if (h > 0 && w > 0) {
+            const bmi = (w / (h * h)).toFixed(1);
+            resBox.style.display = "block";
+            bmiRes.innerHTML = `مؤشر الكتلة: ${bmi}`;
+
+            let plan = "";
+            if (bmi < 18.5) {
+                plan = "<h3>نظام زيادة الوزن:</h3><ul><li><b>ماذا تأكل:</b> المكسرات، الأفوكادو، زيت الزيتون، اللحوم الحمراء، والنشويات (بطاطس، أرز).</li><li><b>نصيحة:</b> تناول 5 وجبات صغيرة يومياً بدلاً من 3 كبيرة.</li></ul>";
+            } else if (bmi < 25) {
+                plan = "<h3>نظام المحافظة على الوزن:</h3><ul><li><b>ماذا تأكل:</b> الخضروات الورقية، الفواكه، البروتينات الخالية من الدهون (صدر دجاج، سمك).</li><li><b>نصيحة:</b> استمر على توازن الكربوهيدرات والبروتين والدهون الصحية.</li></ul>";
+            } else {
+                plan = "<h3>نظام تنزيل الوزن:</h3><ul><li><b>ماذا تأكل:</b> البيض المسلوق، الشوفان، السلطات الخضراء، التفاح، والزبادي قليل الدسم.</li><li><b>نصيحة:</b> اشرب كوبين من الماء قبل كل وجبة وقلل من الخبز الأبيض والسكريات.</li></ul>";
             }
-
-            // عملية حسابية وهمية تعتمد على الأحرف لتعطي ثباتاً للنتيجة لنفس الأسماء
-            let sum = 0;
-            for(let i=0; i < n1.length; i++) sum += n1.charCodeAt(i);
-            for(let i=0; i < n2.length; i++) sum += n2.charCodeAt(i);
-            
-            let percentage = (sum % 41) + 60; // النتيجة ستكون دائماً بين 60% و 100%
-
-            document.getElementById('percent').innerText = percentage + "%";
-            document.getElementById('result-box').style.display = "block";
-
-            let desc = "";
-            if(percentage > 90) desc = "علاقة مثالية، أنتما خلقتا لبعضكما! 😍";
-            else if(percentage > 80) desc = "حب قوي جداً وتفاهم رائع! ❤️";
-            else desc = "هناك كيمياء جيدة، لكن تحتاج لبعض الصبر! 😊";
-            
-            document.getElementById('love-desc').innerText = desc;
+            dietInfo.innerHTML = plan;
+        } else {
+            alert("أدخل الطول والوزن بشكل صحيح");
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
